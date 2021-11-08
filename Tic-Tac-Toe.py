@@ -2,6 +2,7 @@ from IPython.display import clear_output
 from random import randint
 
 def display_board(board):
+    # Print out the board
     clear_output()
     print("    ||   ||    ")
     print("  "+board[1]+" || "+board[2]+" || "+board[3]+"  ")
@@ -30,6 +31,7 @@ def player_input():
 
 def place_marker(board, marker, position):
     
+    # Place a marker on the board
     board[position] = marker
     return board
 
@@ -52,6 +54,7 @@ def win_check(board, mark):
 
 def choose_first():
     
+    # Choose who goes first
     goes_first = randint(0, 1)
     if goes_first == 0:
         return "Player 1"
@@ -59,10 +62,12 @@ def choose_first():
 
 def space_check(board, position):
     
+    # Check if the position on the board is available
     return board[position] == " "
 
 def full_board_check(board):
     
+    # Check if the board is full
     for i in range(1, 10):
         if board[i] == " ":
             return False    
@@ -70,6 +75,7 @@ def full_board_check(board):
 
 def player_choice(board):
     
+    # Ask a player to choose a position for their marker
     next_position = 0
     while next_position not in range(1,10) or not space_check(board, next_position):
         try:
@@ -90,6 +96,7 @@ def player_choice(board):
 
 def replay():
     
+    # Ask a player if they want to play again
     play = "wrong"
     while play not in ["Yes", "No"]:
         play = input("Do you want to play again (Yes/No)? ").capitalize()
@@ -97,6 +104,7 @@ def replay():
             clear_output()
             print("Invalid input. Please choose Yes or No.")        
     return play == "Yes"
+
 
 print('Welcome to Tic Tac Toe!')
 while True:
@@ -106,7 +114,8 @@ while True:
     player1_marker, player2_marker = player_input()
     turn = choose_first()
     print(turn + " will go first.")
-
+    
+    # Start the game
     start_game = " "
     while start_game not in ["Yes", "No"]:
         start_game = input("Want to start playing? (Yes/No)? ").capitalize()
